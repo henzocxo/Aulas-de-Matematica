@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Matemática Pensada em Você — Aulas particulares para o Ensino Médio</title>
+<meta name="description" content="Aulas particulares de matemática para o Ensino Médio, pensadas para o seu jeito de aprender, com diagnóstico personalizado e acompanhamento contínuo." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================================
+   VETOR MATEMÁTICA — folha de estilos
+   Índice:
+   1. Tokens (cores, tipografia, espaçamento)
+   2. Reset e base
+   3. Utilidades e layout
+   4. Cabeçalho e navegação
+   5. Hero
+   6. Seção "O que eu proponho"
+   7. Seção "Quem sou"
+   8. Seção "Conteúdos" (abas)
+   9. Seção "Contato"
+   10. Rodapé
+   11. Responsivo
+   12. Acessibilidade (reduced motion, foco)
+   ========================================================================= */
+
+/* ---------- 1. TOKENS ---------- */
+:root{
+  --ink:        #2A2321;   /* texto principal / fundo escuro — marrom-carvão quente */
+  --ink-70:     rgba(42,35,33,.72);
+  --ink-45:     rgba(42,35,33,.50);
+  --paper:      #FAF6F0;   /* fundo claro, papel quente */
+  --paper-soft: #FFFFFF;
+  --line:       rgba(42,35,33,.10);
+  --line-strong:rgba(42,35,33,.22);
+  --brass:      #A85C6B;   /* rosa-antigo — acento primário, tom pessoal/acolhedor */
+  --brass-dark: #8B4756;
+  --teal:       #6E7D5C;   /* verde-sálvia — acento secundário */
+  --paper-on-ink: #EDEFF3;
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Work Sans", "Segoe UI", Arial, sans-serif;
+
+  --container: 1120px;
+  --radius: 3px;
+  --transition: .5s cubic-bezier(.22,.61,.36,1);
+}
+
+:root[data-theme="dark"]{
+  --ink: #FAF6F0;
+  --paper: #241E1C;
+  --paper-soft: #2E2724;
+  --line: rgba(250,246,240,.12);
+  --line-strong: rgba(250,246,240,.26);
+  --ink-70: rgba(250,246,240,.75);
+  --ink-45: rgba(250,246,240,.52);
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink: #FAF6F0;
+    --paper: #241E1C;
+    --paper-soft: #2E2724;
+    --line: rgba(250,246,240,.12);
+    --line-strong: rgba(250,246,240,.26);
+    --ink-70: rgba(250,246,240,.75);
+    --ink-45: rgba(250,246,240,.52);
+  }
+}
+
+/* ---------- 2. RESET E BASE ---------- */
+*, *::before, *::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--transition), color var(--transition);
+}
+img{ max-width: 100%; display: block; }
+a{ color: inherit; text-decoration: none; }
+ul{ margin: 0; padding: 0; list-style: none; }
+h1,h2,h3,h4{ font-family: var(--font-display); margin: 0; font-weight: 600; }
+p{ margin: 0; }
+button, input, textarea{ font-family: inherit; font-size: inherit; color: inherit; }
+button{ cursor: pointer; }
+
+/* papel milimetrado sutil no fundo das seções claras */
+.grid-bg{
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+/* ---------- 3. UTILIDADES E LAYOUT ---------- */
+.container{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+section{ padding: 118px 0; position: relative; }
+.eyebrow-free-label{
+  display: inline-block;
+  font-size: .8rem;
+  letter-spacing: .02em;
+  color: var(--brass-dark);
+  margin-bottom: 14px;
+}
+.section-head{
+  max-width: 640px;
+  margin-bottom: 64px;
+}
+.section-head h2{
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  line-height: 1.15;
+}
+.section-head .lede{
+  margin-top: 18px;
+  font-size: 1.05rem;
+  color: var(--ink-70);
+}
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: .95rem;
+  border: 1px solid transparent;
+  transition: transform .25s ease, background .25s ease, border-color .25s ease, color .25s ease;
+}
+.btn:hover{ transform: translateY(-2px); }
+.btn-primary{
+  background: var(--ink);
+  color: var(--paper);
+}
+:root[data-theme="dark"] .btn-primary,
+@media (prefers-color-scheme: dark){ /* fallback handled below via var swap */ }
+.btn-primary:hover{ background: var(--brass-dark); }
+.btn-ghost{
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+.btn-ghost:hover{ border-color: var(--brass); color: var(--brass-dark); }
+
+/* ---------- 4. CABEÇALHO E NAVEGAÇÃO ---------- */
+.site-header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+.logo{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+.logo svg{ width: 26px; height: 26px; }
+
+.main-nav ul{
+  display: flex;
+  gap: 4px;
+  position: relative;
+}
+.main-nav a{
+  display: block;
+  padding: 10px 16px;
+  font-size: .92rem;
+  color: var(--ink-70);
+  position: relative;
+  transition: color .25s ease;
+}
+.main-nav a:hover, .main-nav a.is-active{ color: var(--ink); }
+.nav-indicator{
+  position: absolute;
+  bottom: 4px;
+  height: 2px;
+  background: var(--brass);
+  border-radius: 2px;
+  transition: left var(--transition), width var(--transition);
+}
+.nav-toggle{
+  display: none;
+  width: 40px; height: 40px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+}
+.nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
+  content: "";
+  display: block;
+  width: 18px; height: 1.5px;
+  background: var(--ink);
+  position: relative;
+  transition: transform .3s ease, opacity .3s ease;
+}
+.nav-toggle span::before{ position: absolute; top: -6px; }
+.nav-toggle span::after{ position: absolute; top: 6px; }
+.nav-toggle.is-open span{ background: transparent; }
+.nav-toggle.is-open span::before{ transform: rotate(45deg); top: 0; }
+.nav-toggle.is-open span::after{ transform: rotate(-45deg); top: 0; }
+
+/* ---------- 5. HERO ---------- */
+.hero{
+  padding-top: 190px;
+  padding-bottom: 120px;
+  overflow: hidden;
+}
+.hero .container{
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 56px;
+  align-items: center;
+}
+.hero h1{
+  font-size: clamp(2.4rem, 4.4vw, 3.6rem);
+  line-height: 1.08;
+  max-width: 14ch;
+}
+.hero .lede{
+  margin-top: 26px;
+  font-size: 1.08rem;
+  color: var(--ink-70);
+  max-width: 46ch;
+}
+.hero .cta-row{
+  margin-top: 38px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.hero-figure{ position: relative; }
+.hero-figure svg{ width: 100%; height: auto; }
+
+.plot-line{
+  stroke: var(--brass);
+  stroke-width: 2.5;
+  fill: none;
+  stroke-dasharray: 620;
+  stroke-dashoffset: 620;
+  animation: draw 1.6s ease forwards .3s;
+}
+.plot-axis{ stroke: var(--line-strong); stroke-width: 1; }
+.plot-grid{ stroke: var(--line); stroke-width: 1; }
+.plot-point{
+  fill: var(--teal);
+  opacity: 0;
+  transform-origin: center;
+  animation: pop .5s ease forwards;
+}
+.plot-point:nth-of-type(1){ animation-delay: 1.6s; }
+.plot-point:nth-of-type(2){ animation-delay: 1.85s; }
+.plot-point:nth-of-type(3){ animation-delay: 2.1s; }
+.plot-label{
+  font-family: var(--font-body);
+  font-size: 12px;
+  fill: var(--ink-45);
+  opacity: 0;
+  animation: fadein .5s ease forwards 2.3s;
+}
+@keyframes draw{ to{ stroke-dashoffset: 0; } }
+@keyframes pop{ from{ opacity: 0; transform: scale(0); } to{ opacity: 1; transform: scale(1); } }
+@keyframes fadein{ to{ opacity: 1; } }
+
+/* ---------- 6. PROPOSTA ---------- */
+.proposta-list{
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+.proposta-item{
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 32px;
+  padding: 38px 0;
+  border-bottom: 1px solid var(--line);
+}
+.proposta-item .num{
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--brass);
+  font-weight: 500;
+}
+.proposta-item h3{
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+.proposta-item p{ color: var(--ink-70); max-width: 60ch; }
+
+/* ---------- 7. SOBRE ---------- */
+.sobre .container{
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 72px;
+  align-items: start;
+}
+.sobre-photo{
+  position: relative;
+  padding: 18px 18px 0 0;
+}
+.sobre-photo::before{
+  content: "";
+  position: absolute;
+  top: 0; right: 0;
+  width: 100%; height: 100%;
+  border: 1.5px solid var(--brass);
+  z-index: 0;
+}
+.sobre-photo img{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  background: var(--paper-soft);
+}
+.sobre-text h2{ font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 22px; }
+.sobre-text p{ color: var(--ink-70); margin-bottom: 18px; max-width: 62ch; }
+.credenciais{
+  margin-top: 30px;
+  border-left: 2px solid var(--brass);
+  padding-left: 22px;
+  display: grid;
+  gap: 12px;
+}
+.credenciais li{ color: var(--ink-70); font-size: .95rem; }
+.credenciais strong{ color: var(--ink); }
+
+/* ---------- 8. CONTEÚDOS / ABAS ---------- */
+.tabs-bar{
+  display: inline-flex;
+  gap: 6px;
+  position: relative;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 44px;
+  width: 100%;
+}
+.tab-btn{
+  background: transparent;
+  border: none;
+  padding: 14px 22px;
+  font-size: .98rem;
+  color: var(--ink-45);
+  position: relative;
+  transition: color .25s ease;
+}
+.tab-btn.is-active{ color: var(--ink); font-weight: 600; }
+.tab-indicator{
+  position: absolute;
+  bottom: -1px;
+  height: 2px;
+  background: var(--brass);
+  transition: left var(--transition), width var(--transition);
+}
+.tab-panels{ position: relative; min-height: 300px; }
+.tab-panel{
+  display: none;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 56px;
+}
+.tab-panel.is-active{
+  display: grid;
+  animation: panelIn .45s ease;
+}
+@keyframes panelIn{
+  from{ opacity: 0; transform: translateY(10px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+.tab-panel h3{ font-size: 1.3rem; margin-bottom: 16px; }
+.topic-list{ display: grid; gap: 10px; }
+.topic-list li{
+  padding: 12px 0 12px 22px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  color: var(--ink-70);
+}
+.topic-list li::before{
+  content: "";
+  position: absolute;
+  left: 0; top: 20px;
+  width: 6px; height: 6px;
+  background: var(--teal);
+  border-radius: 50%;
+}
+.tab-note{
+  align-self: start;
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  padding: 26px;
+  border-radius: var(--radius);
+}
+.tab-note h4{ font-size: 1rem; margin-bottom: 10px; }
+.tab-note p{ color: var(--ink-70); font-size: .93rem; }
+
+/* ---------- 9. CONTATO ---------- */
+.contato .container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+.form-field{
+  margin-bottom: 20px;
+  display: grid;
+  gap: 8px;
+}
+.form-field label{ font-size: .88rem; color: var(--ink-70); }
+.form-field input, .form-field select, .form-field textarea{
+  border: 1px solid var(--line-strong);
+  background: var(--paper-soft);
+  padding: 13px 14px;
+  border-radius: var(--radius);
+  color: var(--ink);
+  transition: border-color .25s ease;
+}
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus{
+  outline: none;
+  border-color: var(--brass);
+}
+.form-msg{
+  margin-top: 16px;
+  font-size: .9rem;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  display: none;
+}
+.form-msg.is-visible{ display: block; }
+.form-msg.ok{ background: rgba(47,110,104,.12); color: var(--teal); }
+
+.contato-info{ display: grid; gap: 28px; align-content: start; }
+.contato-info h2{ font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 6px; }
+.info-block{ border-top: 1px solid var(--line); padding-top: 20px; }
+.info-block .label{ font-size: .82rem; color: var(--ink-45); margin-bottom: 6px; }
+.info-block .value{ font-size: 1.05rem; }
+.info-block a:hover{ color: var(--brass-dark); }
+
+/* ---------- 10. RODAPÉ ---------- */
+.site-footer{
+  border-top: 1px solid var(--line);
+  padding: 36px 0;
+}
+.site-footer .container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.footer-links{ display: flex; gap: 22px; }
+.footer-links a{ color: var(--ink-70); font-size: .9rem; }
+.footer-links a:hover{ color: var(--brass-dark); }
+.copy{ font-size: .85rem; color: var(--ink-45); }
+
+/* ---------- 11. RESPONSIVO ---------- */
+@media (max-width: 900px){
+  .hero .container{ grid-template-columns: 1fr; }
+  .hero-figure{ order: -1; max-width: 380px; }
+  .sobre .container{ grid-template-columns: 1fr; }
+  .sobre-photo{ max-width: 320px; }
+  .tab-panel{ grid-template-columns: 1fr; }
+  .contato .container{ grid-template-columns: 1fr; }
+}
+@media (max-width: 760px){
+  .main-nav{
+    position: fixed;
+    top: 76px; left: 0; right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease;
+  }
+  .main-nav.is-open{ opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .main-nav ul{ flex-direction: column; padding: 12px 32px 24px; gap: 2px; }
+  .nav-indicator{ display: none; }
+  .nav-toggle{ display: inline-flex; }
+  section{ padding: 76px 0; }
+  .proposta-item{ grid-template-columns: 1fr; gap: 6px; }
+}
+
+/* ---------- 12. ACESSIBILIDADE ---------- */
+:focus-visible{ outline: 2px solid var(--brass); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *{ animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="#inicio" class="logo" aria-label="Matemática Pensada em Você, início">
+      <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="13" cy="13" r="10.5" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M8 13.5 L11.3 16.8 L18 9.8" stroke="var(--brass)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Pensada em Você
+    </a>
+
+    <nav class="main-nav" aria-label="Navegação principal">
+      <ul>
+        <li><span class="nav-indicator" aria-hidden="true"></span></li>
+        <li><a href="#inicio" class="is-active">Início</a></li>
+        <li><a href="#proposta">Proposta</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#conteudos">Conteúdos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section id="inicio" class="hero">
+    <div class="container">
+      <div class="hero-text">
+        <h1>Matemática pensada para você.</h1>
+        <p class="lede">
+          Aulas particulares para o Ensino Médio, construídas em torno do seu
+          jeito de aprender — não de um método pronto. Presenciais ou online,
+          no seu ritmo, para quem precisa entender o raciocínio por trás da
+          fórmula.
+        </p>
+        <div class="cta-row">
+          <a href="#contato" class="btn btn-primary">Marcar uma aula</a>
+          <a href="#conteudos" class="btn btn-ghost">Ver conteúdos por série</a>
+        </div>
+      </div>
+
+      <div class="hero-figure">
+        <svg viewBox="0 0 420 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plano cartesiano com um vetor traçado e três pontos marcados">
+          <line class="plot-grid" x1="0" y1="60" x2="420" y2="60"/>
+          <line class="plot-grid" x1="0" y1="120" x2="420" y2="120"/>
+          <line class="plot-grid" x1="0" y1="180" x2="420" y2="180"/>
+          <line class="plot-grid" x1="0" y1="240" x2="420" y2="240"/>
+          <line class="plot-grid" x1="0" y1="300" x2="420" y2="300"/>
+          <line class="plot-grid" x1="60" y1="0" x2="60" y2="360"/>
+          <line class="plot-grid" x1="120" y1="0" x2="120" y2="360"/>
+          <line class="plot-grid" x1="180" y1="0" x2="180" y2="360"/>
+          <line class="plot-grid" x1="240" y1="0" x2="240" y2="360"/>
+          <line class="plot-grid" x1="300" y1="0" x2="300" y2="360"/>
+          <line class="plot-grid" x1="360" y1="0" x2="360" y2="360"/>
+
+          <line class="plot-axis" x1="0" y1="330" x2="420" y2="330"/>
+          <line class="plot-axis" x1="30" y1="0" x2="30" y2="360"/>
+
+          <path class="plot-line" d="M30,330 C120,260 200,150 330,40" />
+
+          <circle class="plot-point" cx="95" cy="270" r="5"/>
+          <circle class="plot-point" cx="210" cy="165" r="5"/>
+          <circle class="plot-point" cx="320" cy="55" r="5"/>
+
+          <text class="plot-label" x="102" y="266">f(x)</text>
+          <text class="plot-label" x="327" y="50">y = ax + b</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROPOSTA ============ -->
+  <section id="proposta" class="grid-bg">
+    <div class="container">
+      <div class="section-head">
+        <h2>O que eu proponho</h2>
+        <p class="lede">
+          Um método em três etapas, adaptado ao ritmo e às lacunas de cada
+          estudante — não um pacote fechado de exercícios.
+        </p>
+      </div>
+
+      <div class="proposta-list">
+        <div class="proposta-item">
+          <span class="num">01</span>
+          <div>
+            <h3>Diagnóstico</h3>
+            <p>Na primeira conversa, identifico os tópicos em que o aluno já é
+              seguro e os pontos que ainda travam o raciocínio — sem provas
+              surpresa, só perguntas certas.</p>
+          </div>
+        </div>
+        <div class="proposta-item">
+          <span class="num">02</span>
+          <div>
+            <h3>Plano de estudo</h3>
+            <p>A partir do diagnóstico, monto um roteiro de aulas alinhado ao
+              conteúdo da escola.</p>
+          </div>
+        </div>
+        <div class="proposta-item">
+          <span class="num">03</span>
+          <div>
+            <h3>Acompanhamento</h3>
+            <p>Revisamos provas, ajustamos o ritmo e mantenho contato com a
+              família sobre a evolução — o plano muda conforme o aluno avança.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOBRE ============ -->
+  <section id="sobre" class="sobre">
+    <div class="container">
+      <div class="sobre-photo">
+        <!-- Substitua o src abaixo pela foto real do professor/a,
+             por exemplo: assets/foto-perfil.jpg -->
+        <img src="assets/foto-perfil.jpg"
+             onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 500%22><rect width=%22400%22 height=%22500%22 fill=%22%23e7e4da%22/><circle cx=%22200%22 cy=%22190%22 r=%2270%22 fill=%22%23c9c4b4%22/><rect x=%2290%22 y=%22280%22 width=%22220%22 height=%22160%22 rx=%2260%22 fill=%22%23c9c4b4%22/></svg>'"
+             alt="Foto de Levi Santos, professor responsável pelas aulas">
+      </div>
+
+      <div class="sobre-text">
+        <h2>Quem sou</h2>
+        <p>
+          Me chamo <strong>Levi Santos</strong>.
+          Comecei ajudando colegas da escola e percebi que
+          meu maior interesse não era resolver o problema, era explicar o
+          caminho até a solução de um jeito que fizesse sentido para quem
+          está aprendendo.
+        </p>
+        <p>
+          Acredito que a maior parte da dificuldade em matemática vem de
+          lacunas antigas, não de falta de capacidade. Por isso, cada aula
+          parte de onde o aluno realmente está, e não de onde o currículo
+          "acha" que ele deveria estar.
+        </p>
+
+        <ul class="credenciais">
+          <li><strong>Experiência:</strong> começando a dar aulas para estudantes do Ensino Médio.</li>
+          <li><strong>Abordagem:</strong> aulas individuais, em duplas ou em grupos maiores, online ou presenciais, com material próprio.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTEÚDOS / ABAS ============ -->
+  <section id="conteudos" class="grid-bg">
+    <div class="container">
+      <div class="section-head">
+        <h2>Conteúdos do 1º ano</h2>
+        <p class="lede">
+          Cobertura alinhada à BNCC e também ao ritmo e ao material da escola
+          do estudante, com ênfase nos tópicos que sustentam o
+          restante do Ensino Médio.
+        </p>
+      </div>
+
+      <div class="tab-panels">
+        <div class="tab-panel is-active" id="ano1" role="region" aria-label="Conteúdo do 1º ano">
+          <div>
+            <h3>Bases que sustentam o resto do Ensino Médio</h3>
+            <ul class="topic-list">
+              <li>Conjuntos numéricos e intervalos</li>
+              <li>Funções do 1º e 2º grau (afim e quadrática), incluindo produtos notáveis, fatoração e equações do 2º grau</li>
+              <li>Sequências e progressões (PA e PG)</li>
+              <li>Trigonometria no triângulo retângulo</li>
+              <li>Estatística e tratamento de dados</li>
+            </ul>
+          </div>
+          <div class="tab-note">
+            <h4>Foco do ano</h4>
+            <p>Consolidar a leitura de gráficos de função e a manipulação
+              algébrica, a base de praticamente tudo que vem depois.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTATO ============ -->
+  <section id="contato" class="contato">
+    <div class="container">
+      <form id="contact-form" novalidate>
+        <h2 style="margin-bottom:28px;">Vamos conversar</h2>
+
+        <div class="form-field">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+        </div>
+
+        <div class="form-field">
+          <label for="contato-campo">WhatsApp ou e-mail</label>
+          <input type="text" id="contato-campo" name="contato" placeholder="Como prefere ser contatado" required>
+        </div>
+
+        <div class="form-field">
+          <label for="serie">Série</label>
+          <select id="serie" name="serie">
+            <option value="1ano">1º ano do Ensino Médio</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="4" placeholder="Conte um pouco sobre a dificuldade ou o objetivo do aluno"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+        <div id="form-msg" class="form-msg" role="status"></div>
+      </form>
+
+      <div class="contato-info">
+        <h2>Outras formas de contato</h2>
+
+        <div class="info-block">
+          <div class="label">WhatsApp</div>
+          <div class="value"><a href="https://wa.me/5511998778932">(11) 99877-8932</a></div>
+        </div>
+        <div class="info-block">
+          <div class="label">E-mail</div>
+          <div class="value"><a href="mailto:levi.santos@estudante.vila.com.br">levi.santos@estudante.vila.com.br</a></div>
+        </div>
+        <div class="info-block">
+          <div class="label">Atendimento</div>
+          <div class="value">Online (todo o Brasil) e presencial, sob consulta</div>
+        </div>
+        <div class="info-block">
+          <div class="label">Horários</div>
+          <div class="value">Terças, quintas e sextas, das 14h30 às 16h15</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span class="logo" style="font-size:1rem;">Matemática Pensada em Você</span>
+    <div class="footer-links">
+      <a href="https://wa.me/5511998778932">WhatsApp</a>
+      <a href="mailto:levi.santos@estudante.vila.com.br">E-mail</a>
+      <a href="#inicio">Voltar ao início</a>
+    </div>
+    <span class="copy">© <span id="year"></span> Matemática Pensada em Você. Todos os direitos reservados.</span>
+  </div>
+</footer>
+
+<script>
+/* =========================================================================
+   VETOR MATEMÁTICA — script.js
+   1. Menu mobile
+   2. Indicador animado da navegação (segue o link ativo / hover)
+   3. Destaque da seção visível ao rolar a página
+   4. Abas de conteúdo (1º / 2º / 3º ano)
+   5. Formulário de contato
+   ========================================================================= */
+(function () {
+  "use strict";
+
+  document.addEventListener("DOMContentLoaded", init);
+
+  function init() {
+    setupMobileNav();
+    setupNavIndicator();
+    setupScrollSpy();
+    setupTabs();
+    setupContactForm();
+    document.getElementById("year").textContent = new Date().getFullYear();
+  }
+
+  /* ---------- 1. Menu mobile ---------- */
+  function setupMobileNav() {
+    const toggle = document.querySelector(".nav-toggle");
+    const nav = document.querySelector(".main-nav");
+    if (!toggle || !nav) return;
+
+    toggle.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("is-open");
+      toggle.classList.toggle("is-open", isOpen);
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("is-open");
+        toggle.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  /* ---------- 2. Indicador animado da navegação ---------- */
+  function setupNavIndicator() {
+    const nav = document.querySelector(".main-nav ul");
+    const indicator = document.querySelector(".nav-indicator");
+    const links = document.querySelectorAll(".main-nav a");
+    if (!nav || !indicator || !links.length) return;
+
+    function moveIndicatorTo(el) {
+      if (!el) { indicator.style.width = "0px"; return; }
+      const navRect = nav.getBoundingClientRect();
+      const rect = el.getBoundingClientRect();
+      indicator.style.left = rect.left - navRect.left + "px";
+      indicator.style.width = rect.width + "px";
+    }
+
+    const activeLink = () => document.querySelector(".main-nav a.is-active");
+
+    links.forEach((link) => {
+      link.addEventListener("mouseenter", () => moveIndicatorTo(link));
+    });
+    nav.addEventListener("mouseleave", () => moveIndicatorTo(activeLink()));
+
+    window.addEventListener("resize", () => moveIndicatorTo(activeLink()));
+
+    // guarda a função no escopo global do módulo para o scroll-spy reutilizar
+    window.__moveNavIndicator = moveIndicatorTo;
+    setTimeout(() => moveIndicatorTo(activeLink()), 50);
+  }
+
+  /* ---------- 3. Destaque da seção visível ---------- */
+  function setupScrollSpy() {
+    const sections = document.querySelectorAll("main section[id]");
+    const links = document.querySelectorAll(".main-nav a");
+    if (!sections.length || !links.length) return;
+
+    const linkFor = (id) =>
+      document.querySelector('.main-nav a[href="#' + id + '"]');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            links.forEach((l) => l.classList.remove("is-active"));
+            const link = linkFor(entry.target.id);
+            if (link) {
+              link.classList.add("is-active");
+              if (window.__moveNavIndicator) window.__moveNavIndicator(link);
+            }
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  /* ---------- 4. Abas de conteúdo ---------- */
+  function setupTabs() {
+    const tabsBar = document.querySelector(".tabs-bar");
+    if (!tabsBar) return;
+
+    const buttons = Array.from(tabsBar.querySelectorAll(".tab-btn"));
+    const indicator = tabsBar.querySelector(".tab-indicator");
+    const panels = document.querySelectorAll(".tab-panel");
+
+    function moveIndicator(btn) {
+      const barRect = tabsBar.getBoundingClientRect();
+      const rect = btn.getBoundingClientRect();
+      indicator.style.left = rect.left - barRect.left + "px";
+      indicator.style.width = rect.width + "px";
+    }
+
+    function activate(targetId, btn) {
+      buttons.forEach((b) => b.classList.toggle("is-active", b === btn));
+      panels.forEach((p) => p.classList.toggle("is-active", p.id === targetId));
+      moveIndicator(btn);
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => activate(btn.dataset.tab, btn));
+    });
+
+    const initial = buttons.find((b) => b.classList.contains("is-active")) || buttons[0];
+    if (initial) {
+      requestAnimationFrame(() => activate(initial.dataset.tab, initial));
+    }
+    window.addEventListener("resize", () => {
+      const current = buttons.find((b) => b.classList.contains("is-active"));
+      if (current) moveIndicator(current);
+    });
+  }
+
+  /* ---------- 5. Formulário de contato ---------- */
+  function setupContactForm() {
+    const form = document.getElementById("contact-form");
+    const msg = document.getElementById("form-msg");
+    if (!form || !msg) return;
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const nome = form.nome.value.trim();
+      const contatoValor = form.contato.value.trim();
+
+      if (!nome || !contatoValor) {
+        msg.textContent = "Preencha nome e uma forma de contato antes de enviar.";
+        msg.classList.remove("ok");
+        msg.classList.add("is-visible");
+        return;
+      }
+
+      // Sem backend conectado: aqui é onde a integração real (e-mail, API,
+      // WhatsApp) deve ser adicionada. Por ora, confirmamos o envio na tela.
+      msg.textContent =
+        "Mensagem recebida, " + nome.split(" ")[0] + ". Retorno em breve pelo contato informado.";
+      msg.classList.add("ok", "is-visible");
+      form.reset();
+    });
+  }
+})();
+
+</script>
+</body>
+</html>
