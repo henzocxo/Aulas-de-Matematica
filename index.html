@@ -8,10 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-
 <style>
 /* =========================================================================
- folha de estilos
+folha de estilos
    Índice:
    1. Tokens (cores, tipografia, espaçamento)
    2. Reset e base
@@ -509,18 +508,14 @@ section{ padding: 118px 0; position: relative; }
   html{ scroll-behavior: auto; }
   *{ animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
 }
-</style>
 
+</style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="container">
     <a href="#inicio" class="logo" aria-label="Matemática Pensada em Você, início">
-      <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="13" cy="13" r="10.5" stroke="currentColor" stroke-width="1.6"/>
-        <path d="M8 13.5 L11.3 16.8 L18 9.8" stroke="var(--brass)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
       Pensada em Você
     </a>
 
@@ -637,9 +632,9 @@ section{ padding: 118px 0; position: relative; }
       <div class="sobre-photo">
         <!-- Substitua o src abaixo pela foto real do professor/a,
              por exemplo: assets/foto-perfil.jpg -->
-        <img src="assets/foto-perfil.jpg"
-             onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 500%22><rect width=%22400%22 height=%22500%22 fill=%22%23e7e4da%22/><circle cx=%22200%22 cy=%22190%22 r=%2270%22 fill=%22%23c9c4b4%22/><rect x=%2290%22 y=%22280%22 width=%22220%22 height=%22160%22 rx=%2260%22 fill=%22%23c9c4b4%22/></svg>'"
+        <img src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 500%22><rect width=%22400%22 height=%22500%22 fill=%22%23e7e4da%22/><circle cx=%22200%22 cy=%22190%22 r=%2270%22 fill=%22%23c9c4b4%22/><rect x=%2290%22 y=%22280%22 width=%22220%22 height=%22160%22 rx=%2260%22 fill=%22%23c9c4b4%22/></svg>"
              alt="Foto de Levi Santos, professor responsável pelas aulas">
+        <!-- Para usar sua própria foto: troque o src acima por uma imagem em base64 -->
       </div>
 
       <div class="sobre-text">
@@ -687,7 +682,6 @@ section{ padding: 118px 0; position: relative; }
               <li>Funções do 1º e 2º grau (afim e quadrática), incluindo produtos notáveis, fatoração e equações do 2º grau</li>
               <li>Sequências e progressões (PA e PG)</li>
               <li>Trigonometria no triângulo retângulo</li>
-              <li>Estatística e tratamento de dados</li>
             </ul>
           </div>
           <div class="tab-note">
@@ -772,7 +766,7 @@ section{ padding: 118px 0; position: relative; }
 
 <script>
 /* =========================================================================
-script.js
+   VETOR MATEMÁTICA — script.js
    1. Menu mobile
    2. Indicador animado da navegação (segue o link ativo / hover)
    3. Destaque da seção visível ao rolar a página
@@ -913,6 +907,12 @@ script.js
     const msg = document.getElementById("form-msg");
     if (!form || !msg) return;
 
+    function showMsg(text, ok) {
+      msg.textContent = text;
+      msg.classList.toggle("ok", !!ok);
+      msg.classList.add("is-visible");
+    }
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
@@ -920,9 +920,16 @@ script.js
       const contatoValor = form.contato.value.trim();
 
       if (!nome || !contatoValor) {
-        msg.textContent = "Preencha nome e uma forma de contato antes de enviar.";
-        msg.classList.remove("ok");
-        msg.classList.add("is-visible");
+        showMsg("Preencha nome e uma forma de contato antes de enviar.", false);
+        return;
+      }
+
+      // Evita chamar a API com o endpoint de exemplo ainda não configurado
+      if (!form.action || form.action.indexOf("https://formspree.io/f/mgavkder") !== -1) {
+        showMsg(
+          "O formulário ainda não foi configurado: troque SEU_ID_AQUI pelo endpoint do Formspree no atributo action do <form>.",
+          false
+        );
         return;
       }
 
@@ -934,21 +941,32 @@ script.js
         body: new FormData(form),
         headers: { Accept: "application/json" },
       })
-        .then((response) => {
-          if (response.ok) {
-            msg.textContent =
-              "Mensagem recebida, " + nome.split(" ")[0] + ". Retorno em breve pelo contato informado.";
-            msg.classList.add("ok", "is-visible");
+        .then((response) =>
+          response
+            .json()
+            .catch(() => ({}))
+            .then((data) => ({ ok: response.ok, data: data }))
+        )
+        .then(({ ok, data }) => {
+          if (ok) {
+            showMsg(
+              "Mensagem recebida, " + nome.split(" ")[0] + ". Retorno em breve pelo contato informado.",
+              true
+            );
             form.reset();
           } else {
-            throw new Error("Falha no envio");
+            const detalhe =
+              data && Array.isArray(data.errors) && data.errors.length
+                ? data.errors.map((err) => err.message).join(" ")
+                : "tente novamente em instantes.";
+            showMsg("Não consegui enviar: " + detalhe, false);
           }
         })
         .catch(() => {
-          msg.textContent =
-            "Não consegui enviar agora. Tente novamente ou chame direto no WhatsApp.";
-          msg.classList.remove("ok");
-          msg.classList.add("is-visible");
+          showMsg(
+            "Não consegui enviar agora, verifique sua conexão ou chame direto no WhatsApp.",
+            false
+          );
         })
         .finally(() => {
           if (submitBtn) submitBtn.disabled = false;
@@ -956,6 +974,7 @@ script.js
     });
   }
 })();
+
 </script>
 </body>
 </html>
