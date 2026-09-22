@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vetor Matemática</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Matemática Pensada em Você — Aulas particulares para o Ensino Médio</title>
+<meta name="description" content="Aulas particulares de matemática para o Ensino Médio, pensadas para o seu jeito de aprender, com diagnóstico personalizado e acompanhamento contínuo." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Fontes (Google Fonts) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
+<style>
 /* =========================================================================
-   VETOR MATEMÁTICA — folha de estilos
+ folha de estilos
    Índice:
    1. Tokens (cores, tipografia, espaçamento)
    2. Reset e base
@@ -510,332 +509,270 @@ section{ padding: 118px 0; position: relative; }
   html{ scroll-behavior: auto; }
   *{ animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
 }
-  </style>
+</style>
+
 </head>
 <body>
 
-  <!-- Cabeçalho -->
-  <header class="site-header">
+<header class="site-header">
+  <div class="container">
+    <a href="#inicio" class="logo" aria-label="Matemática Pensada em Você, início">
+      <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="13" cy="13" r="10.5" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M8 13.5 L11.3 16.8 L18 9.8" stroke="var(--brass)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Pensada em Você
+    </a>
+
+    <nav class="main-nav" aria-label="Navegação principal">
+      <ul>
+        <li><span class="nav-indicator" aria-hidden="true"></span></li>
+        <li><a href="#inicio" class="is-active">Início</a></li>
+        <li><a href="#proposta">Proposta</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#conteudos">Conteúdos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section id="inicio" class="hero">
     <div class="container">
-      <a href="#" class="logo" aria-label="Vetor Matemática — página inicial">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M4 20L12 4L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M8 14H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <div class="hero-text">
+        <h1>Matemática pensada para você.</h1>
+        <p class="lede">
+          Aulas particulares para o Ensino Médio, construídas em torno do seu
+          jeito de aprender — não de um método pronto. Presenciais ou online,
+          no seu ritmo, para quem precisa entender o raciocínio por trás da
+          fórmula.
+        </p>
+        <div class="cta-row">
+          <a href="#contato" class="btn btn-primary">Marcar uma aula</a>
+          <a href="#conteudos" class="btn btn-ghost">Ver conteúdos por série</a>
+        </div>
+      </div>
+
+      <div class="hero-figure">
+        <svg viewBox="0 0 420 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plano cartesiano com um vetor traçado e três pontos marcados">
+          <line class="plot-grid" x1="0" y1="60" x2="420" y2="60"/>
+          <line class="plot-grid" x1="0" y1="120" x2="420" y2="120"/>
+          <line class="plot-grid" x1="0" y1="180" x2="420" y2="180"/>
+          <line class="plot-grid" x1="0" y1="240" x2="420" y2="240"/>
+          <line class="plot-grid" x1="0" y1="300" x2="420" y2="300"/>
+          <line class="plot-grid" x1="60" y1="0" x2="60" y2="360"/>
+          <line class="plot-grid" x1="120" y1="0" x2="120" y2="360"/>
+          <line class="plot-grid" x1="180" y1="0" x2="180" y2="360"/>
+          <line class="plot-grid" x1="240" y1="0" x2="240" y2="360"/>
+          <line class="plot-grid" x1="300" y1="0" x2="300" y2="360"/>
+          <line class="plot-grid" x1="360" y1="0" x2="360" y2="360"/>
+
+          <line class="plot-axis" x1="0" y1="330" x2="420" y2="330"/>
+          <line class="plot-axis" x1="30" y1="0" x2="30" y2="360"/>
+
+          <path class="plot-line" d="M30,330 C120,260 200,150 330,40" />
+
+          <circle class="plot-point" cx="95" cy="270" r="5"/>
+          <circle class="plot-point" cx="210" cy="165" r="5"/>
+          <circle class="plot-point" cx="320" cy="55" r="5"/>
+
+          <text class="plot-label" x="102" y="266">f(x)</text>
+          <text class="plot-label" x="327" y="50">y = ax + b</text>
         </svg>
-        <span>Vetor Matemática</span>
-      </a>
-
-      <nav class="main-nav" aria-label="Navegação principal">
-        <ul>
-          <li><a href="#inicio" class="is-active">Início</a></li>
-          <li><a href="#proposta">O que eu proponho</a></li>
-          <li><a href="#sobre">Quem sou</a></li>
-          <li><a href="#conteudos">Conteúdos</a></li>
-          <li><a href="#contato">Contato</a></li>
-          <span class="nav-indicator" aria-hidden="true"></span>
-        </ul>
-      </nav>
-
-      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
-        <span></span>
-      </button>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <!-- Hero -->
-    <section id="inicio" class="hero grid-bg">
-      <div class="container">
-        <div class="hero-text">
-          <span class="eyebrow-free-label">Matemática com sentido</span>
-          <h1>Aprenda matemática de verdade, sem decoreba</h1>
-          <p class="lede">
-            Aulas que conectam conceitos, desenvolvem raciocínio e preparam você para provas, vestibulares e para a vida.
-          </p>
-          <div class="cta-row">
-            <a href="#conteudos" class="btn btn-primary">Ver conteúdos</a>
-            <a href="#contato" class="btn btn-ghost">Fale comigo</a>
-          </div>
-        </div>
-
-        <div class="hero-figure" aria-hidden="true">
-          <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
-            <!-- Grade -->
-            <g class="plot-grid">
-              <line x1="40" y1="40" x2="40" y2="280"/>
-              <line x1="40" y1="280" x2="380" y2="280"/>
-              <line x1="80" y1="40" x2="80" y2="280"/>
-              <line x1="120" y1="40" x2="120" y2="280"/>
-              <line x1="160" y1="40" x2="160" y2="280"/>
-              <line x1="200" y1="40" x2="200" y2="280"/>
-              <line x1="240" y1="40" x2="240" y2="280"/>
-              <line x1="280" y1="40" x2="280" y2="280"/>
-              <line x1="320" y1="40" x2="320" y2="280"/>
-              <line x1="360" y1="40" x2="360" y2="280"/>
-              <line x1="40" y1="80" x2="380" y2="80"/>
-              <line x1="40" y1="120" x2="380" y2="120"/>
-              <line x1="40" y1="160" x2="380" y2="160"/>
-              <line x1="40" y1="200" x2="380" y2="200"/>
-              <line x1="40" y1="240" x2="380" y2="240"/>
-            </g>
-            <!-- Eixos -->
-            <g class="plot-axis">
-              <line x1="40" y1="280" x2="380" y2="280"/>
-              <line x1="40" y1="40" x2="40" y2="280"/>
-            </g>
-            <!-- Linha do gráfico -->
-            <path class="plot-line" d="M40 240 C 120 220, 180 160, 260 120 S 340 80, 380 60"/>
-            <!-- Pontos -->
-            <circle class="plot-point" cx="120" cy="200" r="5"/>
-            <circle class="plot-point" cx="220" cy="140" r="5"/>
-            <circle class="plot-point" cx="320" cy="90" r="5"/>
-            <!-- Rótulos -->
-            <text class="plot-label" x="340" y="50">progresso</text>
-            <text class="plot-label" x="350" y="270">tempo</text>
-          </svg>
-        </div>
-      </div>
-    </section>
-
-    <!-- Proposta -->
-    <section id="proposta" class="proposta">
-      <div class="container">
-        <div class="section-head">
-          <h2>O que eu proponho</h2>
-          <p class="lede">
-            Um jeito de estudar matemática que faz sentido, conecta ideias e constrói autonomia.
-          </p>
-        </div>
-
-        <div class="proposta-list">
-          <div class="proposta-item">
-            <div class="num">01</div>
-            <div>
-              <h3>Entender antes de fazer</h3>
-              <p>
-                Começamos pelo significado dos conceitos. Assim, os exercícios deixam de ser “receitas” e viram consequência natural do entendimento.
-              </p>
-            </div>
-          </div>
-
-          <div class="proposta-item">
-            <div class="num">02</div>
-            <div>
-              <h3>Conexões entre os temas</h3>
-              <p>
-                Álgebra, geometria, funções e estatística conversam entre si. Mostro como um assunto ajuda a entender o outro, criando uma visão integrada da matemática.
-              </p>
-            </div>
-          </div>
-
-          <div class="proposta-item">
-            <div class="num">03</div>
-            <div>
-              <h3>Foco em raciocínio, não só em resultado</h3>
-              <p>
-                Valorizo o caminho: hipóteses, tentativas, ajustes. Assim você ganha segurança para enfrentar questões novas, não só as que já viu.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sobre -->
-    <section id="sobre" class="sobre grid-bg">
-      <div class="container">
-        <div class="sobre-photo">
-          <!-- Substitua src pela sua foto -->
-          <img src="foto-perfil.jpg" alt="Foto de perfil do professor" />
-        </div>
-
-        <div class="sobre-text">
-          <h2>Quem sou</h2>
-          <p>
-            Sou professor de matemática e acredito que todo estudante pode desenvolver um bom raciocínio quando o ensino é claro, organizado e respeita o tempo de cada um.
-          </p>
-          <p>
-            Em aula, procuro criar um ambiente tranquilo, onde é permitido errar, perguntar e testar ideias. A matemática deixa de ser um “bicho de sete cabeças” e vira uma ferramenta poderosa de pensamento.
-          </p>
-
-          <ul class="credenciais">
-            <li><strong>Formação:</strong> Licenciatura em Matemática</li>
-            <li><strong>Experiência:</strong> Aulas para Ensino Médio, vestibulares e concursos</li>
-            <li><strong>Abordagem:</strong> Explicações passo a passo, exemplos do cotidiano e prática orientada</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Conteúdos (Abas) -->
-    <section id="conteudos" class="conteudos">
-      <div class="container">
-        <div class="section-head">
-          <h2>Conteúdos por ano</h2>
-          <p class="lede">
-            Material organizado por série, com foco nos temas que mais caem em provas e vestibulares.
-          </p>
-        </div>
-
-        <div class="tabs-bar" role="tablist" aria-label="Seletor de ano">
-          <button class="tab-btn is-active" data-tab="ano1" role="tab" aria-selected="true" aria-controls="painel-ano1">1º ano</button>
-          <button class="tab-btn" data-tab="ano2" role="tab" aria-selected="false" aria-controls="painel-ano2">2º ano</button>
-          <button class="tab-btn" data-tab="ano3" role="tab" aria-selected="false" aria-controls="painel-ano3">3º ano</button>
-          <span class="tab-indicator" aria-hidden="true"></span>
-        </div>
-
-        <div class="tab-panels">
-          <!-- 1º ano -->
-          <div id="painel-ano1" class="tab-panel is-active" role="tabpanel" aria-labelledby="ano1">
-            <div class="topics">
-              <h3>1º ano do Ensino Médio</h3>
-              <ul class="topic-list">
-                <li>Conjuntos e lógica básica</li>
-                <li>Funções: conceito, domínio, imagem e gráficos</li>
-                <li>Função afim e função quadrática</li>
-                <li>Equações e inequações</li>
-                <li>Trigonometria no triângulo retângulo</li>
-                <li>Noções de estatística: média, mediana e moda</li>
-              </ul>
-            </div>
-            <aside class="tab-note">
-              <h4>Como uso isso em aula</h4>
-              <p>
-                Parto de situações concretas (descontos, trajetórias, pesquisas) para introduzir cada conceito, depois generalizo e treino com exercícios graduados.
-              </p>
-            </aside>
-          </div>
-
-          <!-- 2º ano -->
-          <div id="painel-ano2" class="tab-panel" role="tabpanel" aria-labelledby="ano2">
-            <div class="topics">
-              <h3>2º ano do Ensino Médio</h3>
-              <ul class="topic-list">
-                <li>Função exponencial e logaritmos</li>
-                <li>Progressões: PA e PG</li>
-                <li>Matrizes, determinantes e sistemas lineares</li>
-                <li>Geometria espacial: prismas, cilindros e volumes</li>
-                <li>Análise combinatória básica</li>
-                <li>Probabilidade</li>
-              </ul>
-            </div>
-            <aside class="tab-note">
-              <h4>Foco em interpretação</h4>
-              <p>
-                Muitos alunos travam na hora de transformar o texto do problema em equações. Treino essa “tradução” com exemplos do dia a dia.
-              </p>
-            </aside>
-          </div>
-
-          <!-- 3º ano -->
-          <div id="painel-ano3" class="tab-panel" role="tabpanel" aria-labelledby="ano3">
-            <div class="topics">
-              <h3>3º ano do Ensino Médio</h3>
-              <ul class="topic-list">
-                <li>Revisão intensiva de funções</li>
-                <li>Geometria analítica: ponto, reta e circunferência</li>
-                <li>Números complexos e polinômios</li>
-                <li>Geometria espacial: cones, esferas e troncos</li>
-                <li>Estatística e interpretação de gráficos</li>
-                <li>Resolução de questões de vestibulares e ENEM</li>
-              </ul>
-            </div>
-            <aside class="tab-note">
-              <h4>Preparação para provas</h4>
-              <p>
-                Simulados cronometrados, revisão de erros e estratégias de chute consciente para maximizar a nota em testes objetivos.
-              </p>
-            </aside>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contato -->
-    <section id="contato" class="contato grid-bg">
-      <div class="container">
-        <div class="contato-info">
-          <h2>Vamos conversar?</h2>
-          <p class="lede">
-            Me conte seu objetivo (acompanhamento escolar, vestibular, concurso etc.) e eu te respondo com propostas de aulas.
-          </p>
-
-          <div class="info-block">
-            <div class="label">E-mail</div>
-            <div class="value">
-              <a href="mailto:contato@vetormatematica.com.br">contato@vetormatematica.com.br</a>
-            </div>
-          </div>
-
-          <div class="info-block">
-            <div class="label">WhatsApp</div>
-            <div class="value">
-              <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">(11) 99999-9999</a>
-            </div>
-          </div>
-
-          <div class="info-block">
-            <div class="label">Atendimento</div>
-            <div class="value">
-              Online (videochamada) ou presencial (consultar localidades).
-            </div>
-          </div>
-        </div>
-
-        <!-- Substitua action pelo seu endpoint (ex.: Formspree) -->
-        <form id="contact-form" class="contact-form" action="https://formspree.io/SEU_ID_AQUI" method="POST">
-          <div class="form-field">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" required placeholder="Seu nome completo" />
-          </div>
-
-          <div class="form-field">
-            <label for="contato">E-mail ou WhatsApp</label>
-            <input type="text" id="contato" name="contato" required placeholder="Seu melhor contato" />
-          </div>
-
-          <div class="form-field">
-            <label for="assunto">Assunto</label>
-            <select id="assunto" name="assunto">
-              <option value="aulas-particulares">Aulas particulares</option>
-              <option value="grupo">Aulas em grupo</option>
-              <option value="duvida">Dúvida sobre o método</option>
-              <option value="outro">Outro</option>
-            </select>
-          </div>
-
-          <div class="form-field">
-            <label for="mensagem">Mensagem (opcional)</label>
-            <textarea id="mensagem" name="mensagem" rows="4" placeholder="Conte um pouco do seu objetivo"></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Enviar mensagem</button>
-
-          <div id="form-msg" class="form-msg" role="status" aria-live="polite"></div>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <!-- Rodapé -->
-  <footer class="site-footer">
+  <!-- ============ PROPOSTA ============ -->
+  <section id="proposta" class="grid-bg">
     <div class="container">
-      <div class="copy">
-        &copy; <span id="year"></span> Vetor Matemática — todos os direitos reservados.
+      <div class="section-head">
+        <h2>O que eu proponho</h2>
+        <p class="lede">
+          Um método em três etapas, adaptado ao ritmo e às lacunas de cada
+          estudante — não um pacote fechado de exercícios.
+        </p>
       </div>
-      <nav class="footer-links" aria-label="Links do rodapé">
-        <a href="#proposta">O que eu proponho</a>
-        <a href="#sobre">Quem sou</a>
-        <a href="#conteudos">Conteúdos</a>
-        <a href="#contato">Contato</a>
-      </nav>
-    </div>
-  </footer>
 
-  <!-- JavaScript incorporado -->
-  <script>
+      <div class="proposta-list">
+        <div class="proposta-item">
+          <span class="num">01</span>
+          <div>
+            <h3>Diagnóstico</h3>
+            <p>Na primeira conversa, identifico os tópicos em que o aluno já é
+              seguro e os pontos que ainda travam o raciocínio — sem provas
+              surpresa, só perguntas certas.</p>
+          </div>
+        </div>
+        <div class="proposta-item">
+          <span class="num">02</span>
+          <div>
+            <h3>Plano de estudo</h3>
+            <p>A partir do diagnóstico, monto um roteiro de aulas alinhado ao
+              conteúdo da escola.</p>
+          </div>
+        </div>
+        <div class="proposta-item">
+          <span class="num">03</span>
+          <div>
+            <h3>Acompanhamento</h3>
+            <p>Revisamos provas, ajustamos o ritmo e mantenho contato com a
+              família sobre a evolução — o plano muda conforme o aluno avança.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOBRE ============ -->
+  <section id="sobre" class="sobre">
+    <div class="container">
+      <div class="sobre-photo">
+        <!-- Substitua o src abaixo pela foto real do professor/a,
+             por exemplo: assets/foto-perfil.jpg -->
+        <img src="assets/foto-perfil.jpg"
+             onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 500%22><rect width=%22400%22 height=%22500%22 fill=%22%23e7e4da%22/><circle cx=%22200%22 cy=%22190%22 r=%2270%22 fill=%22%23c9c4b4%22/><rect x=%2290%22 y=%22280%22 width=%22220%22 height=%22160%22 rx=%2260%22 fill=%22%23c9c4b4%22/></svg>'"
+             alt="Foto de Levi Santos, professor responsável pelas aulas">
+      </div>
+
+      <div class="sobre-text">
+        <h2>Quem sou</h2>
+        <p>
+          Me chamo <strong>Levi Santos</strong>.
+          Comecei ajudando colegas da escola e percebi que
+          meu maior interesse não era resolver o problema, era explicar o
+          caminho até a solução de um jeito que fizesse sentido para quem
+          está aprendendo.
+        </p>
+        <p>
+          Acredito que a maior parte da dificuldade em matemática vem de
+          lacunas antigas, não de falta de capacidade. Por isso, cada aula
+          parte de onde o aluno realmente está, e não de onde o currículo
+          "acha" que ele deveria estar.
+        </p>
+
+        <ul class="credenciais">
+          <li><strong>Experiência:</strong> começando a dar aulas para estudantes do Ensino Médio.</li>
+          <li><strong>Abordagem:</strong> aulas individuais, em duplas ou em grupos maiores, online ou presenciais, com material próprio.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTEÚDOS / ABAS ============ -->
+  <section id="conteudos" class="grid-bg">
+    <div class="container">
+      <div class="section-head">
+        <h2>Conteúdos do 1º ano</h2>
+        <p class="lede">
+          Cobertura alinhada à BNCC e também ao ritmo e ao material da escola
+          do estudante, com ênfase nos tópicos que sustentam o
+          restante do Ensino Médio.
+        </p>
+      </div>
+
+      <div class="tab-panels">
+        <div class="tab-panel is-active" id="ano1" role="region" aria-label="Conteúdo do 1º ano">
+          <div>
+            <h3>Bases que sustentam o resto do Ensino Médio</h3>
+            <ul class="topic-list">
+              <li>Conjuntos numéricos e intervalos</li>
+              <li>Funções do 1º e 2º grau (afim e quadrática), incluindo produtos notáveis, fatoração e equações do 2º grau</li>
+              <li>Sequências e progressões (PA e PG)</li>
+              <li>Trigonometria no triângulo retângulo</li>
+              <li>Estatística e tratamento de dados</li>
+            </ul>
+          </div>
+          <div class="tab-note">
+            <h4>Foco do ano</h4>
+            <p>Consolidar a leitura de gráficos de função e a manipulação
+              algébrica, a base de praticamente tudo que vem depois.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTATO ============ -->
+  <section id="contato" class="contato">
+    <div class="container">
+      <!-- Substitua SEU_ID_AQUI pelo endpoint gerado na sua conta Formspree -->
+      <form id="contact-form" action="https://formspree.io/f/SEU_ID_AQUI" method="POST" novalidate>
+        <h2 style="margin-bottom:28px;">Vamos conversar</h2>
+
+        <div class="form-field">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+        </div>
+
+        <div class="form-field">
+          <label for="contato-campo">WhatsApp ou e-mail</label>
+          <input type="text" id="contato-campo" name="contato" placeholder="Como prefere ser contatado" required>
+        </div>
+
+        <div class="form-field">
+          <label for="serie">Série</label>
+          <select id="serie" name="serie">
+            <option value="1ano">1º ano do Ensino Médio</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="4" placeholder="Conte um pouco sobre a dificuldade ou o objetivo do aluno"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+        <div id="form-msg" class="form-msg" role="status"></div>
+      </form>
+
+      <div class="contato-info">
+        <h2>Outras formas de contato</h2>
+
+        <div class="info-block">
+          <div class="label">WhatsApp</div>
+          <div class="value"><a href="https://wa.me/5511998778932">(11) 99877-8932</a></div>
+        </div>
+        <div class="info-block">
+          <div class="label">E-mail</div>
+          <div class="value"><a href="mailto:levi.santos@estudante.vila.com.br">levi.santos@estudante.vila.com.br</a></div>
+        </div>
+        <div class="info-block">
+          <div class="label">Atendimento</div>
+          <div class="value">Online (todo o Brasil) e presencial, sob consulta</div>
+        </div>
+        <div class="info-block">
+          <div class="label">Horários</div>
+          <div class="value">Terças, quintas e sextas, das 14h30 às 16h15</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span class="logo" style="font-size:1rem;">Matemática Pensada em Você</span>
+    <div class="footer-links">
+      <a href="https://wa.me/5511998778932">WhatsApp</a>
+      <a href="mailto:levi.santos@estudante.vila.com.br">E-mail</a>
+      <a href="#inicio">Voltar ao início</a>
+    </div>
+    <span class="copy">© <span id="year"></span> Matemática Pensada em Você. Todos os direitos reservados.</span>
+  </div>
+</footer>
+
+<script>
 /* =========================================================================
-   VETOR MATEMÁTICA — script.js
+script.js
    1. Menu mobile
    2. Indicador animado da navegação (segue o link ativo / hover)
    3. Destaque da seção visível ao rolar a página
@@ -1019,6 +956,6 @@ section{ padding: 118px 0; position: relative; }
     });
   }
 })();
-  </script>
+</script>
 </body>
 </html>
